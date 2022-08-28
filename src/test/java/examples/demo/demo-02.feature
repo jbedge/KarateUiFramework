@@ -10,6 +10,7 @@ Feature: browser automation 2
     And input('input[name=q]', 'karate dsl')
     When click('input[name=btnI]')
     Then waitForUrl('https://github.com/intuit/karate')
+    And waitForLocator()
 
     When click('{a}Go to file')
     And def searchField = waitFor('input[name=query]')
