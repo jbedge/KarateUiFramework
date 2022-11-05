@@ -9,7 +9,9 @@ Feature: browser automation 1
     Given driver "https://en.wikipedia.org/wiki/Wiki"
     * maximize()
     And waitFor("//*[@class='mw-interlanguage-selector mw-ui-button']").click()
-#    * delay(1000)
+#    * script("window.open('https://www.google.com','_self')")
+    * delay(500)
+    Given driver "https://www.google.com"
     And waitFor("//input[@class='uls-filterinput uls-languagefilter noime languagefilter']").input('<language>')
 #    * delay(1000)
     And waitFor("//*[contains(@class,'autonym') and text() = '<language>']").click()
@@ -19,11 +21,21 @@ Feature: browser automation 1
     Then waitFor('{a}Modifica collegamenti')
     * print text('.wbc-editpage')
     And match text('.wbc-editpage') == 'Modifica collegamenti'
+#    to clear field use the following elements
+    * value('#title', '')
+    * script('#title', "_.value = ''"
+    When switchFrame('#frame01')
+
+#    * def urltoNav = ibCpUrl + '/ib-server-index.action'
+
+  #  Open another chrome with DO
+#    * script("window.open("urltoNav",'_self')")
+
 
     Examples:
       | language    |
       | Italiano    |
-      | Italiano    |
+#      | Italiano    |
 
 
 #  click('{a}Click Me')	  the first <a> where the text-content is exactly: Click Me
